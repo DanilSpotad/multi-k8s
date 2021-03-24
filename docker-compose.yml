@@ -9,7 +9,7 @@ services:
   nginx:
     depends_on:
       - api
-      - client
+      - client_
     restart: always
     build:
       dockerfile: Dockerfile.dev
@@ -31,14 +31,14 @@ services:
       - PGDATABASE=postgres
       - PGPASSWORD=postgres_password
       - PGPORT=5432
-  client:
+  client_:
     stdin_open: true
     build:
       dockerfile: Dockerfile.dev
-      context: ./client
+      context: ./client_
     volumes:
       - /app/node_modules
-      - ./client:/app
+      - ./client_:/app
   worker:
     build:
       dockerfile: Dockerfile.dev

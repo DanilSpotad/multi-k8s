@@ -5,13 +5,13 @@ services:
   - docker
 
 before_install:
-  - docker build -t spotaddockers/react-test -f ./client/Dockerfile.dev ./client
+  - docker build -t spotaddockers/react-test -f ./client_/Dockerfile.dev ./client_
 
 script:
   - docker run -e CI=true spotaddockers/react-test npm test
 
 after_success:
-  - docker build -t spotaddockers/multi-client ./client
+  - docker build -t spotaddockers/multi-client ./client_
   - docker build -t spotaddockers/multi-nginx ./nginx
   - docker build -t spotaddockers/multi-server ./server
   - docker build -t spotaddockers/multi-worker ./worker
