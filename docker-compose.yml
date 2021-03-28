@@ -9,13 +9,13 @@ services:
   nginx:
     depends_on:
       - api
-      - client
+      - clientmy
     restart: always
     build:
       dockerfile: Dockerfile.dev
       context: ./nginx
     ports:
-      - '3050:80'
+      - '3050:5080'
   api:
     build:
       dockerfile: Dockerfile.dev
@@ -31,14 +31,14 @@ services:
       - PGDATABASE=postgres
       - PGPASSWORD=postgres_password
       - PGPORT=5432
-  client:
+  clientmy:
     stdin_open: true
     build:
       dockerfile: Dockerfile.dev
-      context: ./client
+      context: ./clientmy
     volumes:
       - /app/node_modules
-      - ./client:/app
+      - ./clientmy:/app
   worker:
     build:
       dockerfile: Dockerfile.dev
