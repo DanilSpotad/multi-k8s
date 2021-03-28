@@ -5,23 +5,23 @@ services:
   - docker
 
 before_install:
-  - docker build -t spotaddockers/react-test -f ./clientmy/Dockerfile.dev ./clientmy
+  - docker build -t spotaddockers/react-test -f ./client/Dockerfile.dev ./client
 
 script:
   - docker run -e CI=true spotaddockers/react-test npm test
 
 after_success:
-  - docker build -t spotaddockers/multi-client ./clientmy
-  - docker build -t spotaddockers/multi-nginx ./nginx
-  - docker build -t spotaddockers/multi-server ./server
-  - docker build -t spotaddockers/multi-worker ./worker
+  - docker build -t spotaddockers/multi-client-10-14 ./client
+  - docker build -t spotaddockers/multi-nginx-10-14 ./nginx
+  - docker build -t spotaddockers/multi-server-10-14 ./server
+  - docker build -t spotaddockers/multi-worker-10-14 ./worker
   # Log in to the docker CLI
   - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
   # Take those images and push them to docker hub
-  - docker push spotaddockers/multi-client
-  - docker push spotaddockers/multi-nginx
-  - docker push spotaddockers/multi-server
-  - docker push spotaddockers/multi-worker
+  - docker push spotaddockers/multi-client-10-14
+  - docker push spotaddockers/multi-nginx-10-14
+  - docker push spotaddockers/multi-server-10-14
+  - docker push spotaddockers/multi-worker-10-14
 
 deploy:
   provider: elasticbeanstalk
