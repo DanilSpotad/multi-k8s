@@ -15,7 +15,7 @@ services:
       dockerfile: Dockerfile.dev
       context: ./nginx
     ports:
-      - '3050:5080'
+      - '3050:80'
   api:
     build:
       dockerfile: Dockerfile.dev
@@ -34,7 +34,7 @@ services:
   clientmy:
     stdin_open: true
     build:
-      dockerfile: Dockerfile.dev
+      dockerfile: Dockerfile
       context: ./clientmy
     volumes:
       - /app/node_modules
