@@ -2,9 +2,9 @@
   "AWSEBDockerrunVersion": 2,
   "containerDefinitions": [
     {
-      "name": "clientmy",
+      "name": "client",
       "image": "spotaddockers/multi-client",
-      "hostname": "clientmy",
+      "hostname": "client",
       "essential": false,
       "memory": 128
     },
@@ -33,7 +33,7 @@
           "containerPort": 80
         }
       ],
-      "links": ["clientmy", "server"],
+      "links": ["client", "server"],
       "memory": 128
     }
   ]
